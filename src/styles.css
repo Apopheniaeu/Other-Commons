@@ -10,6 +10,16 @@
   src: url("fonts/MetaballsTrial-Light.otf") format("truetype");
 }
 
+@font-face {
+  font-family: "Eurocat-Light";
+  src: url("fonts/Eurocat-Light.otf") format("truetype");
+}
+
+@font-face {
+  font-family: "EurocatSans-Thin";
+  src: url("fonts/EurocatSans-Thin.otf") format("truetype");
+}
+
 a {
   font-family: Programme-Regular, sans-serif;
   color: black;
@@ -27,9 +37,9 @@ b {
 }
 
 h1 {
-  font-family: Metaballs-Light, sans-serif;
+  font-family: EurocatSans-Thin, sans-serif;
   color: black;
-  font-size: 100px;
+  font-size: 110px;
   line-height: 1;
   right: 75%;
 }
