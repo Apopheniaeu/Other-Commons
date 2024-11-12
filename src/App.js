@@ -54,16 +54,20 @@ const App = () => {
     return (
       <div className="App">
         <div className="text-container">
-          <h1>Eyes in Cap</h1>
+          <a class="author">BENJAMIN REYNOLDS</a>
+          <br />
+          <br />
+          <br />
+          <br />
+          <a class="essay-name">
+            Eyes in Capti <br /> tity
+          </a>
           <h2 class="sound-symbol">⏵</h2>
-          <a href={pdfFile} download>
+          <a2 href={pdfFile} download>
             <span role="img" className="download-symbol">
               ↓
             </span>
-          </a>
-
-          <br />
-          <h2>AUTHOR FULL NAME</h2>
+          </a2>
           <br />
           <br />
           <br />
@@ -381,7 +385,7 @@ const App = () => {
           <br />
         </div>
         <div className="static-features">
-          <a>01</a>
+          <a2>01</a2>
         </div>
       </div>
     );
