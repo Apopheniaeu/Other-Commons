@@ -27,6 +27,11 @@
 }
 
 @font-face {
+  font-family: "Programme-Light";
+  src: url("fonts/Programme-Light.otf") format("truetype");
+}
+
+@font-face {
   font-family: "Metaballs-Light";
   src: url("fonts/MetaballsTrial-Light.otf") format("truetype");
 }
@@ -49,10 +54,10 @@ b {
   text-transform: uppercase;
 }
 
-a2 {
+a {
   font-family: Programme-Regular, sans-serif;
   color: black;
-  font-size: 25px;
+  font-size: 21px;
   line-height: 1.2;
   text-decoration: none;
 }
@@ -66,15 +71,15 @@ h2 {
 }
 
 p {
-  font-family: Programme-Regular, sans-serif;
+  font-family: Programme-Light, sans-serif;
   color: black;
   cursor: default;
-  font-size: 18px;
+  font-size: 17px;
   line-height: 1.5;
 }
 
 .indented:first-of-type {
-  margin-top: 80vh; /* Pushes the first paragraph down to start below the viewport */
+  margin-top: 90vh; /* Pushes the first paragraph down to start below the viewport */
 }
 
 .indented {
@@ -228,39 +233,40 @@ body {
     background-color: #fafafa;
   }
 
+  .text-container {
+    padding: 30px 50px 0 20px;
+    height: calc(100% - 25px);
+    overflow: auto;
+    max-height: calc(100vh + 25px);
+    position: absolute;
+  }
+
+  .author {
+    font-family: EurocatSans, sans-serif;
+    font-size: calc(6.5vw - 0px);
+    position: absolute;
+    left: 50%;
+    top: 40px;
+    transform: translateX(-50%);
+    text-align: center;
+    line-height: 0.9;
+    letter-spacing: -0.1em;
+    font-variation-settings: "grid" var(--font-variation-settings, 400);
+    white-space: nowrap; /* Prevents line break */
+  }
+
   .essay-name {
     font-family: Eurocat, sans-serif;
     color: black;
     font-size: calc(38vw - 20px);
     position: absolute;
     left: 47%;
-    transform: translateX(-50%);
+    transform: translate(-50%, -50%);
     text-align: center;
     line-height: 0.9;
     letter-spacing: -0.1em;
-    top: 140px;
+    top: 50%;
     font-variation-settings: "grid" var(--font-variation-settings, 70);
-  }
-
-  .author {
-    font-family: EurocatSans, sans-serif;
-    font-size: calc(8vw - 0px);
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    text-align: center;
-    top: 40px;
-    line-height: 0.9;
-    letter-spacing: -0.1em;
-    font-variation-settings: "grid" var(--font-variation-settings, 400);
-  }
-
-  .text-container {
-    padding: 30px 50px 0 20px;
-    height: calc(100% - 25px);
-    overflow: auto;
-    max-height: calc(100vh - 25px);
-    position: absolute;
   }
 
   .static-features {
@@ -279,15 +285,27 @@ body {
     display: inline-block;
   }
 
-  .download-symbol {
+  .sound-symbol {
+    font-family: EurocatBase, sans-serif;
+    font-variation-settings: "grid" var(--font-variation-settings, 300);
     position: absolute;
-    top: 430px;
-    right: 15px;
+    bottom: 160px;
+    right: 20px;
   }
 
-  .sound-symbol {
+  .share-symbol {
+    font-family: EurocatBase, sans-serif;
+    font-variation-settings: "grid" var(--font-variation-settings, 300);
     position: absolute;
-    top: 500;
-    right: 15px;
+    bottom: 120px;
+    right: 20px;
+  }
+
+  .download-symbol {
+    font-family: EurocatBase, sans-serif;
+    font-variation-settings: "grid" var(--font-variation-settings, 300);
+    position: absolute;
+    bottom: 80px;
+    right: 20px;
   }
 }

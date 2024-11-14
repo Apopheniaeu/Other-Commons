@@ -2,6 +2,12 @@ import React, { useState, useEffect } from "react";
 import "./styles.css";
 import pdfFile from "./texts/ISSUE0-TEXT1.pdf";
 
+const loadTextFile = async () => {
+  const response = await fetch("/path/to/your/file.txt");
+  const text = await response.text();
+  return text.split("###").map((section) => section.trim());
+};
+
 const App = () => {
   const [isMobile, setIsMobile] = useState(false);
   const VisualMagazinePage1 = require("./images/VisualMagazine_p1.png");
@@ -15,6 +21,16 @@ const App = () => {
   const TextMagazinePage4_5 = require("./images/TextMagazine_LowRes_p4-5.png");
   const TextMagazinePage6_7 = require("./images/TextMagazine_LowRes_p6-7.png");
   const TextMagazinePage8 = require("./images/TextMagazine_LowRes_p8.png");
+
+  const [textSections, setTextSections] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const sections = await loadTextFile();
+      setTextSections(sections);
+    };
+    fetchData();
+  }, []);
 
   const visualMagazinePages = [
     VisualMagazinePage1,
@@ -54,23 +70,17 @@ const App = () => {
     return (
       <div className="App">
         <div className="text-container">
-          <a class="author">BENJAMIN REYNOLDS</a>
-          <br />
-          <br />
-          <br />
-          <br />
+          <div class="author">BENJAMIN REYNOLDS</div>
           <a class="essay-name">
             Eyes in Capti <br /> tity
           </a>
-          <h2 class="sound-symbol">⏵</h2>
-          <a2 href={pdfFile} download>
+          <a class="sound-symbol">></a>
+          <a class="share-symbol">/</a>
+          <a href={pdfFile} download>
             <span role="img" className="download-symbol">
               ↓
             </span>
-          </a2>
-          <br />
-          <br />
-          <br />
+          </a>
           <p class="indented">
             The poor image is a copy in motion. Its quality is bad, its
             resolution substandard. As it accelerates, it deteriorates. It is a
@@ -385,7 +395,7 @@ const App = () => {
           <br />
         </div>
         <div className="static-features">
-          <a2>01</a2>
+          <a>01</a>
         </div>
       </div>
     );
