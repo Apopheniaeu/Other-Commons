@@ -1,5 +1,19 @@
-/* FONTS */
+/* ============================================================
+   Global Styles & Resets
+   ============================================================ */
 
+/* General Reset */
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+/* Font Faces */
 @font-face {
   font-family: "Eurocat";
   src: url(/src/fonts/EurocatVF.woff2) format("woff2-variations"),
@@ -46,72 +60,19 @@
   src: url("fonts/EurocatSans-Thin.otf") format("truetype");
 }
 
-b {
-  font-family: Programme-Regular, sans-serif;
-  color: black;
-  font-size: 18px;
-  line-height: 1.2;
-  text-transform: uppercase;
-}
+/* ============================================================
+   Layout Styles
+   ============================================================ */
 
-a {
-  font-family: Programme-Regular, sans-serif;
-  color: black;
-  font-size: 21px;
-  line-height: 1.2;
-  text-decoration: none;
-}
-
-h2 {
-  font-family: Programme-Regular, sans-serif;
-  color: black;
-  font-size: 24px;
-  line-height: 0.25;
-  text-align: right;
-}
-
-p {
-  font-family: Programme-Light, sans-serif;
-  color: black;
-  cursor: default;
-  font-size: 17px;
-  line-height: 1.5;
-}
-
-.indented:first-of-type {
-  margin-top: 90vh; /* Pushes the first paragraph down to start below the viewport */
-}
-
-.indented {
-  text-indent: 2.5em; /* Adjust the value to your desired indentation */
-  margin-bottom: 1.5em; /* Adds space between paragraphs */
-}
-
-.indented-line {
-  display: inline-block;
-  width: 2em; /* Adjust the width as needed */
-}
-
-/* Styles for larger screens */
+/* Main Application Container */
 .App {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   height: 100vh;
-  background-color: #f2f1f0; /* Added background color */
+  background-color: #f2f1f0;
+  flex-direction: column;
 }
 
-body {
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  user-select: none;
-  -moz-user-select: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-}
-
+/* Containers for Visuals and Text */
 .visual-magazine-container,
 .text-magazine-container {
   display: flex;
@@ -125,16 +86,17 @@ body {
   max-height: 100vh;
 }
 
-.visual-magazine-page img {
+.visual-magazine-page img,
+.text-magazine-page img {
   max-width: 100vw;
   max-height: 100vh;
 }
 
-.text-magazine-page img {
-  max-width: 80vw;
-  max-height: 80vh;
-}
+/* ============================================================
+   Component Styles
+   ============================================================ */
 
+/* Toggle Container (for toggle switch) */
 .toggle-container {
   position: absolute;
   top: 50%;
@@ -142,6 +104,7 @@ body {
   transform: translate(0, -50%);
 }
 
+/* Toggle Switch Styles */
 .toggle-label {
   position: relative;
   display: inline-flex;
@@ -167,9 +130,8 @@ body {
   display: flex;
   align-items: center;
   font-size: 14px;
-  padding: 0 11px; /* Position of "T" */
-  line-height: 1;
-  color: #fff; /* Added color for the Unicode symbols */
+  padding: 0 11px;
+  color: #fff;
 }
 
 .toggle-slider:before {
@@ -191,121 +153,169 @@ body {
   transform: translateX(26px);
 }
 
-.toggle-symbol-left {
-  /* Circular slider */
-  order: 1;
-  margin-right: 4px;
-  z-index: 1;
-}
-
-.toggle-symbol-right {
-  /* Circular slider */
-  order: 2;
-  margin-left: 4px;
-  z-index: 1;
-}
-
-.toggle-slider:before {
-  content: "";
-  left: 4px; /* Adjust the position of the circular slider */
-}
-
 .toggle-slider:after {
   position: absolute;
-  content: "📷"; /* Replace with your desired image symbol */
-  right: 8px; /* Adjust the position of the image symbol */
+  content: "📷"; /* Image or icon symbol */
+  right: 8px;
   z-index: 0;
 }
 
-/* Additional styles for customization */
-.toggle-label:focus .toggle-slider {
-  box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.5);
+/* ============================================================
+   Fixed Position Components (scroll button, navigation, etc.)
+   ============================================================ */
+
+/* Scroll to Top Button */
+.static-features {
+  height: 30px;
+  background-color: whitesmoke;
+  opacity: 99%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  backdrop-filter: blur(5px);
+  box-shadow: 0px -25px 25px 10px whitesmoke;
+  text-align: center;
+  padding-right: 20px;
+  padding-bottom: 15px;
+  display: flex;
+  z-index: 101; /* Ensures button stays above other content */
 }
 
-.toggle-label:hover .toggle-slider {
-  background-color: #ccc;
+/* Navigation Symbols and Buttons */
+.scroll-button {
+  font-family: EurocatBase, sans-serif;
+  font-variation-settings: "grid" var(--font-variation-settings, 300);
+  font-size: 21px; /* Size of the scroll icon */
+  background: none;
+  border-radius: 50%; /* Optional: Make the button circular */
+  position: absolute;
+  right: 18px;
+  cursor: pointer;
+  z-index: 102;
 }
 
-/* Styles for tablets and phones */
+/* ============================================================
+   Text and Typography Styles
+   ============================================================ */
+
+/* General Paragraph and Text Formatting */
+a {
+  font-family: Programme-Regular, sans-serif;
+  color: black;
+  font-size: 21px;
+  line-height: 1.2;
+  text-decoration: none;
+}
+
+h2 {
+  font-family: Programme-Regular, sans-serif;
+  color: black;
+  font-size: 24px;
+  line-height: 0.25;
+  text-align: right;
+}
+
+p {
+  font-family: Programme-Light, sans-serif;
+  color: black;
+  cursor: default;
+  font-size: 17px;
+  line-height: 1.5;
+}
+
+.indented {
+  text-indent: 2.5em;
+  margin-bottom: 1.5em;
+}
+
+.indented-line {
+  display: inline-block;
+  width: 2em;
+}
+
+/* Author and Essay Name Styles */
+.author {
+  padding-top: 50px;
+  font-family: EurocatSans, sans-serif;
+  font-size: calc(5vw - 0px);
+  text-align: right;
+  line-height: 0.9;
+  letter-spacing: -0.1em;
+  font-variation-settings: "grid" var(--font-variation-settings, 500);
+}
+
+.essay-name {
+  font-family: Eurocat, sans-serif;
+  color: black;
+  font-size: calc(38vw - 20px);
+  position: absolute;
+  left: 47%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  line-height: 0.9;
+  letter-spacing: -0.1em;
+  top: 47%;
+  font-variation-settings: "grid" var(--font-variation-settings, 70);
+}
+
+/* Subtitle Styles */
+.subtitle {
+  font-family: EurocatSans-Bold, sans-serif;
+  text-indent: 2.5em;
+  color: black;
+  font-size: 18px;
+  line-height: 1;
+  text-transform: uppercase;
+  display: block;
+}
+
+.subtitle:first-of-type {
+  margin-top: 90vh;
+}
+
+/* ============================================================
+   Responsive Styles
+   ============================================================ */
+
 @media (max-width: 768px) {
   .App {
     display: flex;
     background-color: #fafafa;
   }
 
+  /* Adjustments for text, symbols, and layout for smaller screens */
   .text-container {
-    padding: 30px 50px 0 20px;
-    height: calc(100% - 25px);
-    overflow: auto;
-    max-height: calc(100vh + 25px);
-    position: absolute;
+    padding-right: 50px;
+    padding-left: 20px;
+    height: auto;
+    overflow-y: auto;
+    position: relative;
   }
 
-  .author {
-    font-family: EurocatSans, sans-serif;
-    font-size: calc(6.5vw - 0px);
-    position: absolute;
-    left: 50%;
-    top: 40px;
-    transform: translateX(-50%);
-    text-align: center;
-    line-height: 0.9;
-    letter-spacing: -0.1em;
-    font-variation-settings: "grid" var(--font-variation-settings, 400);
-    white-space: nowrap; /* Prevents line break */
-  }
-
-  .essay-name {
-    font-family: Eurocat, sans-serif;
-    color: black;
-    font-size: calc(38vw - 20px);
-    position: absolute;
-    left: 47%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    line-height: 0.9;
-    letter-spacing: -0.1em;
-    top: 50%;
-    font-variation-settings: "grid" var(--font-variation-settings, 70);
-  }
-
-  .static-features {
-    height: 30px;
-    background-color: whitesmoke;
-    opacity: 99%;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    backdrop-filter: blur(5px);
-    box-shadow: 0px -25px 25px 10px whitesmoke;
-    text-align: right;
-    padding-right: 20px;
-    padding-bottom: 15px;
-    display: inline-block;
-  }
-
-  .sound-symbol {
-    font-family: EurocatBase, sans-serif;
-    font-variation-settings: "grid" var(--font-variation-settings, 300);
-    position: absolute;
-    bottom: 160px;
-    right: 20px;
-  }
-
-  .share-symbol {
-    font-family: EurocatBase, sans-serif;
-    font-variation-settings: "grid" var(--font-variation-settings, 300);
-    position: absolute;
-    bottom: 120px;
-    right: 20px;
-  }
-
+  .sound-symbol,
+  .share-symbol,
   .download-symbol {
     font-family: EurocatBase, sans-serif;
     font-variation-settings: "grid" var(--font-variation-settings, 300);
+    right: 24px;
+  }
+
+  .sound-symbol {
     position: absolute;
-    bottom: 80px;
-    right: 20px;
+    bottom: 140px;
+    z-index: 100;
+  }
+
+  .share-symbol {
+    position: absolute;
+    bottom: 100px;
+    z-index: 100;
+  }
+
+  .download-symbol {
+    position: absolute;
+    bottom: 60px;
+    z-index: 100;
   }
 }
