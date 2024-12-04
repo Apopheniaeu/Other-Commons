@@ -2,15 +2,9 @@ import React, { useState, useEffect } from "react";
 import "./styles.css";
 import pdfFile from "./texts/ISSUE0-TEXT1.pdf";
 
-const loadTextFile = async () => {
-  const response = await fetch("/path/to/your/file.txt");
-  const text = await response.text();
-  return text.split("###").map((section) => section.trim());
-};
-
 const App = () => {
   const [isMobile, setIsMobile] = useState(false);
-  const [textSections, setTextSections] = useState([]);
+  const [textContent, setTextContent] = useState("");
 
   // Media queries and page content
   const VisualMagazinePage1 = require("./images/VisualMagazine_p1.png");
@@ -41,14 +35,6 @@ const App = () => {
     TextMagazinePage8,
   ];
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const sections = await loadTextFile();
-      setTextSections(sections);
-    };
-    fetchData();
-  }, []);
-
   // Handle resizing for mobile view
   useEffect(() => {
     const checkScreenSize = () => {
@@ -62,6 +48,29 @@ const App = () => {
     return () => {
       window.removeEventListener("resize", checkScreenSize);
     };
+  }, []);
+
+  // Fetch text from public folder
+  useEffect(() => {
+    fetch("/CaptiveEyes.txt")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.text();
+      })
+      .then((text) => {
+        // Replace "###" with styled HTML
+        const formattedText = text.replace(
+          /###(.+?)(?=\n|$)/g,
+          '<span class="subtitle">$1</span>'
+        );
+        setTextContent(formattedText);
+      })
+      .catch((error) => {
+        console.error("Error fetching text:", error);
+        setTextContent("Error loading text. Please try again later.");
+      });
   }, []);
 
   // Smooth scroll to top
@@ -91,43 +100,10 @@ const App = () => {
               Eyes in Capti <br /> tity
             </a>
           </div>
-          <a className="subtitle"> Drown </a>
-          <p className="indented">
-            When we look at our hands they appear 3×10⁻⁹ seconds old. The people
-            at the counter over there are 70×10⁻⁹ seconds old. Even though we
-            see all of them at once we are seeing a stream of many instants; of
-            ages.⁣ Now our senses are forming very close bonds with sources of
-            light and sound. Brightly lit surfaces sit only a few centimetres
-            away from our retinas, vibrating diaphragms rest on our temporal
-            bones if not directly in our ear canals. These are the demands of
-            so-called ‘spatial computing’: capable of sensing space itself,
-            lenses pointed towards and away from us sense orientations and
-            velocities of bodily gestures, durations of time spent in locations
-            are triangulated with the tone in our voice and heart pulses read
-            from our temples; a space that is simultaneously that of labour and
-            of recreation, collapsed into a visual frame that wraps our eyes.
-            <br />
-            <span className="indented-line" />
-            The spatial computer bleeds representations of our physical
-            environments and bodies with augmented digital objects, but any
-            leaking of light or sound may disrupt this experience. Indeed the
-            ‘outside’ is considered a threat to the suspension of reality within
-            the spatial computer. The term ‘immersion’ that often accompanies
-            this experience is derived from immergere meaning to sink into a
-            fluid; a veritable drowning must occur should the media be properly
-            experienced. Genuine encounters with others in reality are
-            substituted with a recording of the view that our eyes would
-            otherwise have, even our own faces which are concurrently engulfed
-            by a spatial computer, are substituted with an unmasked facsimile of
-            itself. When we surface we find the world parched, our senses
-            thirsting for the saturated sunsets and amplified sounds of forest
-            floors we encounter when immersed in the spatial computer. Digitised
-            drowning is replaced with the sensory barrenness of reality’s
-            subtler hues and imperceptible sounds, and we gradually lose the
-            ability to appreciate sensations of the real world. Our engagement
-            with reality diminishes and real environments attempt to mimic the
-            euphoria only experienced when fully immersed in spatial computing.
-          </p>
+          <p
+            className="indented"
+            dangerouslySetInnerHTML={{ __html: textContent || "Loading..." }}
+          ></p>
         </div>
 
         <div className="static-features">

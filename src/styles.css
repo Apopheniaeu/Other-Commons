@@ -60,6 +60,11 @@ body {
   src: url("fonts/EurocatSans-Thin.otf") format("truetype");
 }
 
+@font-face {
+  font-family: "EurocatSans-Bold";
+  src: url("fonts/EurocatSans-Bold.otf") format("truetype");
+}
+
 /* ============================================================
    Layout Styles
    ============================================================ */
