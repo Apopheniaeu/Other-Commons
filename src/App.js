@@ -73,9 +73,11 @@ const App = () => {
       });
   }, []);
 
-  // Smooth scroll to top
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    const scrollableElement = document.querySelector(".text-container"); // Target the actual scrollable div
+    if (scrollableElement) {
+      scrollableElement.scrollTo({ top: 0, behavior: "smooth" });
+    }
   };
 
   const disableRightClick = (event) => {
@@ -89,13 +91,40 @@ const App = () => {
         <div className="text-container">
           <div>
             <a className="sound-symbol">→</a>
-            <a className="share-symbol">/</a>
+            <a
+              className="share-symbol"
+              onClick={() => {
+                if (navigator.share) {
+                  // Use the native share API if available
+                  navigator
+                    .share({
+                      title: document.title,
+                      url: window.location.href,
+                    })
+                    .catch((error) => console.error("Error sharing:", error));
+                } else {
+                  // Fallback: Copy URL to clipboard
+                  navigator.clipboard
+                    .writeText(window.location.href)
+                    .then(() => {
+                      alert("URL copied to clipboard!");
+                    })
+                    .catch((error) =>
+                      console.error("Error copying URL:", error)
+                    );
+                }
+              }}
+            >
+              /
+            </a>
+
             <a href={pdfFile} download>
               <span role="img" className="download-symbol">
                 ↓
               </span>
             </a>
             <div className="author">BENJAMIN REYNOLDS</div>
+            <div className="date">JANUARY 2024</div>
             <a className="essay-name">
               Eyes in Capti <br /> tity
             </a>
@@ -170,19 +199,6 @@ const App = () => {
               src={magazines[currentMagazine].pages[currentPage]}
               alt={`Page ${currentPage + 1}`}
             />
-          </div>
-          <div className="toggle-container">
-            <label className="toggle-label">
-              <input
-                type="checkbox"
-                className="toggle-input"
-                checked={currentMagazine === "text"}
-                onChange={handleMagazineChange}
-              />
-              <span className="toggle-slider">
-                {currentMagazine === "visual" ? "📷" : "🅃"}
-              </span>
-            </label>
           </div>
         </div>
       </div>

@@ -171,7 +171,7 @@ body {
 
 /* Scroll to Top Button */
 .static-features {
-  height: 30px;
+  height: 25px;
   background-color: whitesmoke;
   opacity: 99%;
   position: fixed;
@@ -181,8 +181,8 @@ body {
   backdrop-filter: blur(5px);
   box-shadow: 0px -25px 25px 10px whitesmoke;
   text-align: center;
-  padding-right: 20px;
-  padding-bottom: 15px;
+  padding-right: 10px;
+  padding-bottom: 30px;
   display: flex;
   z-index: 101; /* Ensures button stays above other content */
 }
@@ -192,12 +192,24 @@ body {
   font-family: EurocatBase, sans-serif;
   font-variation-settings: "grid" var(--font-variation-settings, 300);
   font-size: 21px; /* Size of the scroll icon */
-  background: none;
+  background: white; /* White fill */
+  color: black; /* Icon color for contrast */
+  border: none; /* Remove the border line */
   border-radius: 50%; /* Optional: Make the button circular */
+  width: 40px; /* Set width for a perfect circle */
+  height: 40px; /* Set height for a perfect circle */
   position: absolute;
-  right: 18px;
+  justify-content: center; /* Center the icon */
+  align-items: center; /* Center the icon */
+  right: 15px;
   cursor: pointer;
   z-index: 102;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Add shadow for a modern look */
+  transition: transform 0.2s ease-in-out; /* Add hover effect */
+}
+
+.scroll-button:active {
+  transform: scale(1.2); /* Enlarge slightly when clicked */
 }
 
 /* ============================================================
@@ -225,8 +237,8 @@ p {
   font-family: Programme-Light, sans-serif;
   color: black;
   cursor: default;
-  font-size: 17px;
-  line-height: 1.5;
+  font-size: 18px;
+  line-height: 1.6;
 }
 
 .indented {
@@ -243,11 +255,11 @@ p {
 .author {
   padding-top: 50px;
   font-family: EurocatSans, sans-serif;
-  font-size: calc(5vw - 0px);
+  font-size: calc(4.5vw - 0px);
   text-align: right;
   line-height: 0.9;
   letter-spacing: -0.1em;
-  font-variation-settings: "grid" var(--font-variation-settings, 500);
+  font-variation-settings: "grid" var(--font-variation-settings, 600);
 }
 
 .essay-name {
@@ -260,8 +272,22 @@ p {
   text-align: center;
   line-height: 0.9;
   letter-spacing: -0.1em;
-  top: 47%;
+  top: 45%;
   font-variation-settings: "grid" var(--font-variation-settings, 70);
+}
+
+.date {
+  font-family: Programme-Light, sans-serif;
+  color: lightgray;
+  font-size: calc(4vw - 0px);
+  position: absolute;
+  top: 85vh;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  line-height: 0.9;
+  letter-spacing: -0.1em;
+  font-variation-settings: "grid" var(--font-variation-settings, 600);
 }
 
 /* Subtitle Styles */
@@ -291,8 +317,8 @@ p {
 
   /* Adjustments for text, symbols, and layout for smaller screens */
   .text-container {
-    padding-right: 50px;
-    padding-left: 20px;
+    padding-right: 47.5px;
+    padding-left: 17.5px;
     height: auto;
     overflow-y: auto;
     position: relative;
@@ -303,24 +329,32 @@ p {
   .download-symbol {
     font-family: EurocatBase, sans-serif;
     font-variation-settings: "grid" var(--font-variation-settings, 300);
-    right: 24px;
+    right: 21px;
   }
 
   .sound-symbol {
     position: absolute;
-    bottom: 140px;
+    bottom: 230px;
     z-index: 100;
   }
 
   .share-symbol {
     position: absolute;
-    bottom: 100px;
+    bottom: 190px;
     z-index: 100;
+    font-size: 24px; /* Optional: Adjust size */
+    cursor: pointer; /* Show pointer on hover */
+    color: black; /* Optional: Set icon/text color */
+    transition: transform 0.2s ease-in-out;
+  }
+
+  .share-symbol:active {
+    transform: scale(1.1); /* Slightly enlarge on click */
   }
 
   .download-symbol {
     position: absolute;
-    bottom: 60px;
+    bottom: 150px;
     z-index: 100;
   }
 }
